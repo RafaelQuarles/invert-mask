@@ -1,0 +1,299 @@
+/* ---------------------------------------- */
+/* ------------- CSS IMPORTS ---------------*/
+/* ---------------------------------------- */
+/* @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
+/* ---------------------------------------- */
+/* -------------- CSS RESET ----------------*/
+/* ---------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* ---------------------------------------- */
+/* -------------- VARIABLES ----------------*/
+/* ---------------------------------------- */
+:root {
+	--primary: #000;
+	--secondary: #fff;
+	--link: #00F;
+	--link-hover: #F00;
+	--primary-font: Roboto, sans-serif;
+	--heading-font: Roboto, sans-serif;
+	
+	font-size: clamp(1rem, 0.5rem + 1.25vw, 1.25rem);
+	background-color: #fff;
+}
+
+/* ---------------------------------------- */
+/* ------------ GLOBAL STYLES ------------- */
+/* ---------------------------------------- */
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+* {
+	touch-action: manipulation;
+}
+img {
+	max-width: 100%;
+}
+body {
+	font-family: var(--primary-font);
+}
+strong {
+	font-weight: bold;
+}
+em, i {
+	font-style: italic;
+}
+blockquote {
+	background: #f9f9f9;
+	border-left: 10px solid #ccc;
+	margin: 1.5em 10px;
+	padding: 0.5em 10px;
+	quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+	color: #ccc;
+	content: open-quote;
+	font-size: 4em;
+	line-height: 0.1em;
+	margin-right: 0.25em;
+	vertical-align: -0.4em;
+}
+blockquote p {
+	display: inline;
+}
+code {
+    background-color: #eee;
+    border-radius: 3px;
+    font-family: courier, monospace;
+    padding: 0 3px;
+}
+pre {
+	font-family: monospace;
+    white-space: pre;
+}
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: var(--links);
+}
+a:hover {
+	color: var(--link-hover);
+}
+.hide {
+	display: none;
+}
+.bold {
+	font-weight: bold;
+}
+.grid-container {
+	max-width: 1400px !important;
+    margin: auto;
+}
+/* fix for flexbox from unsemantic*/
+.grid-container::before, .grid-container::after {
+	content: none !important;
+}
+.grecaptcha-badge {
+	display: none !important;
+}
+.button {
+	font-family: var(--primary-font);
+	background-color: var(--primary);
+	color: white;
+	text-transform: uppercase;
+	border: none;
+	border-radius: 4px;
+	padding: 14px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 0px;
+	margin-right: 12px;
+	cursor: pointer;
+	width: fit-content;
+	max-width: 300px;
+	position: relative;
+	white-space: nowrap;
+}
+.button:hover {
+	background-color: var(--secondary);
+	color: #000;
+	box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.button.secondary {
+	background-color: var(--secondary);
+	color: var(--primary);
+}
+.button.secondary:hover {
+	background-color: var(--primary);
+	color: var(--secondary);
+	box-shadow: 0px 1px 2px 2px rgba(255, 255, 255, 0.3);
+}
+/* Responsive font sizing */
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--heading-font);
+	font-weight: bold;
+}
+h1 {font-size: 3.999rem;}
+h2 {font-size: 2.999rem;}
+h3 {font-size: 2.333rem;}
+h4 {font-size: 2.000rem;}
+h5 {font-size: 1.666rem;}
+h6 {font-size: 1.333rem;}
+ul,li,p {
+	font-size: 1rem;
+	line-height: 1.5rem;
+}
+ul,li,p {
+	font-family: var(--primary-font);
+	font-size: 1rem;
+	font-weight: 300;
+	line-height: 1.5rem;
+}
+
+/* CUSTOM SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+	width: 6px;
+	background-color: var(--secondary)
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	display: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: var(--primary);
+	width: 12px;
+	border-radius: 0px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #979797;
+}
+/* -------------------------------------------
+NOTES:
+
+unsemantic breakpionts : mobile / tablet / desktop 
+@media (max-width: 400px) {}
+@media (max-width: 767px) {}
+
+------------------------------------------- */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+h4 {
+    padding: 8px;
+    font-size: 28px;
+    margin-top: 120px;
+}
+input {
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 4px;
+}
+.file-manager {
+    margin-bottom: 20px;
+}
+.file-manager #download-zip {
+    display: none;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+.file-manager #download-zip:hover {
+    background-color: #303030;
+}
+#image-container {
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    background: rgb(218, 218, 218);
+    margin-bottom: 100px;
+    display: none;
+}
+#image-container p{
+    width: 50%;
+    text-align: center;
+    padding: 8px;
+}
+#image-container p:first-child{
+    background-color: #000;
+    color: #fff;
+}
+#image-container img{
+    width: 50%;
+    margin: 0 !important;
+    padding: 4px 0;
+    position: relative;
+    transition: scale 0.1s ease-in-out;
+}
+#image-container img:nth-child(2n):hover{
+    scale: 0.96;
+    cursor: pointer;
+    outline: 1px solid #000;
+}
+.footer {
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    font-size: 14px;
+}
