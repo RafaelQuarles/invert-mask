@@ -47,14 +47,24 @@ async function processImage(image, fileName) {
     const green = imageData.data[i + 1];
     const blue = imageData.data[i + 2];
     const threshold = 45;
+    const alphaLow = 64;
+    const alphaHigh = 128;
 
     if (red >= (255 - threshold) && red <= 255 && green >= (255 - threshold) && green <= 255 && blue >= (255 - threshold) && blue <= 255) {
-      // Change to black
       imageData.data[i + 0] = 0;
       imageData.data[i + 1] = 0;
       imageData.data[i + 2] = 0;
+    } else if (red >= (255 - threshold - alphaHigh) && green >= (255 - threshold - alphaHigh) && blue >= (255 - threshold - alphaHigh)) {
+      imageData.data[i + 0] = 0;
+      imageData.data[i + 1] = 0;
+      imageData.data[i + 2] = 0;
+      imageData.data[i + 3] = alphaHigh;
+    } else if (red >= (255 - threshold - alphaLow) && green >= (255 - threshold - alphaLow) && blue >= (255 - threshold - alphaLow)) {
+      imageData.data[i + 0] = 0;
+      imageData.data[i + 1] = 0;
+      imageData.data[i + 2] = 0;
+      imageData.data[i + 3] = alphaLow;
     } else {
-      // Change to transparent
       imageData.data[i + 3] = 0;
     }
   }
@@ -65,6 +75,7 @@ async function processImage(image, fileName) {
   displayImages(image, outputDataURL);
   addToZip(outputDataURL, fileName);
 }
+
 
 function displayImages(inputImage, outputDataURL) {
     const inputImg = document.createElement('img');
