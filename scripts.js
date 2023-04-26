@@ -72,34 +72,35 @@ async function processImage(image, fileName) {
   ctx.putImageData(imageData, 0, 0);
   const outputDataURL = canvas.toDataURL('image/png');
 
-  displayImages(image, outputDataURL);
+  displayImages(image, outputDataURL, fileName);
   addToZip(outputDataURL, fileName);
 }
 
 
-function displayImages(inputImage, outputDataURL) {
-    const inputImg = document.createElement('img');
-    inputImg.src = inputImage.src;
-    inputImg.style.margin = '10px';
-    imageContainer.appendChild(inputImg);
-  
-    const outputImg = document.createElement('img');
-    outputImg.src = outputDataURL;
-    outputImg.style.margin = '10px';
-    outputImg.style.cursor = 'pointer';
-    imageContainer.appendChild(outputImg);
-  
-    outputImg.addEventListener('click', () => {
-      const link = document.createElement('a');
-      link.href = outputDataURL;
-      link.download = 'converted_image.png';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
-  }
+function displayImages(inputImage, outputDataURL, fileName) {
+  const inputImg = document.createElement('img');
+  inputImg.src = inputImage.src;
+  inputImg.style.margin = '10px';
+  imageContainer.appendChild(inputImg);
+
+  const outputImg = document.createElement('img');
+  outputImg.src = outputDataURL;
+  outputImg.style.margin = '10px';
+  outputImg.style.cursor = 'pointer';
+  imageContainer.appendChild(outputImg);
+
+  outputImg.addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.href = outputDataURL;
+    link.download = fileName.replace(/\.[^.]+$/, '') + '-inverted.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+}
+
 
 function addToZip(dataURL, fileName) {
-    const data = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
-    zip.file(fileName.replace(/\.[^.]+$/, '') + '_converted.png', data, { base64: true });
+  const data = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+  zip.file(fileName.replace(/\.[^.]+$/, '') + '-inverted.png', data, { base64: true });
 }
